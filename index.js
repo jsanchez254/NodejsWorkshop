@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require ("path");
+const axios = require("axios");
 
 //IMPORT DATABASE STUFF
 var sqlite3 = require('sqlite3').verbose();
@@ -19,12 +20,27 @@ app.get('/', (req, res) =>{
 });
 
 app.get('/animals', (req,res) =>{
-    res.render("animals.html");
+    //FETCH MULTIPLE TUPLES FROM DATABASE
+    var  storeData = [];
+    db.each("SELECT name, sciName, facts FROM ANIMALS;", function(err, row) {
+        console.log("NAME: " + row.name);
+        console.log("SCIENTIFIC NAME: " + row.sciName);
+        console.log("FACTS: " + row.facts);
+        // storeData = JSON.stringify(row);
+        storeData.push (row);
+    });
+
+    setTimeout(() => {
+        console.log(storeData);
+        res.render("animals.html", {ANIMALDATA: storeData});
+    }, 900);
+
 });
 
 app.get('/facts' , (req, res) =>{
     res.render("animalFacts.html");
 });
+
 
 //CREATE DATABASE INFO
 app.get('/createTable', (req, res) => {
@@ -49,6 +65,15 @@ app.get("/deleteRepeatedInfo", (req, res) =>{
     query = "DELETE FROM ANIMALS WHERE name = 'Hedgehog'";
     db.run(query);
     res.send("ALL DEATH NOW");
+});
+
+//LET US DO SOME POKEMON NOW
+app.get("/pokemon/:pokemon", (req, res1) =>{
+    console.log("https://pokeapi.co/api/v2/pokemon/" + req.params.pokemon + "/");
+    axios.get("https://pokeapi.co/api/v2/pokemon/" + req.params.pokemon + "/")
+    .then(res => {
+        res1.send(res.data);
+    }).catch(res1.send("INVALID POKEMON TRY AGAIN"))
 });
 
 app.listen(3000, () => console.log("COOL 3000 PORT!!"))

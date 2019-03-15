@@ -1,0 +1,33 @@
+.simpleNav{
+    display: inline-block;
+}
+.link{
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 28px;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+    border: solid black 1px;
+    text-align: center;
+}
+
+.link:hover{
+    text-decoration: underline;
+    color: blueviolet;
+}
+
+/* TABLE ANIMAL */
+.animalTable{
+    border: solid 2px black;
+  }
+  td{
+      padding: 30px;
+      border: solid black 3px;
+  }
+  th{
+    border: solid black 3px;
+  }
+  table{
+      border: solid black 3px;
+  }

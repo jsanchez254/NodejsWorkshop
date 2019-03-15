@@ -1,26 +1,20 @@
 <html>
     <head>
-        <style>
-            .simpleNav{
-              background-color: greenyellow;
-              display: inline-block;
-          }
-          .link{
-              padding-left: 20px;
-              padding-right: 20px;
-              border: solid black 1px;
-              text-align: center;
-          }
-        </style>
+        <link rel="stylesheet" href="navbar.css">
     </head>
     <body>
         <center>
             <div class = "simpleNav">
                 <a class = "link" href = "/">HOME</a>
                 <a class = "link" href = "/animals">ANIMALS</a>
-                <a class = "link" href = "/facts">ANIMAL FACTS</a>
+                <a class = "link" href = "/facts">POKEMON</a>
             </div>
-            <h1>THIS IS ANIMAL FACTS!!</h1>
+            <h1>THIS IS POKEMON FACTS!!</h1>
+                <!-- FORM TO SUBMIT POKEMON -->
+                <span> http://localhost:3000/pokemon/ </span><input id = "pokeInput" name = "pokemon"/>
+                <button type = "submit" onclick = "search()">SUBMIT POKEMON NAME</button>
+           
         </center>
+        <script src="pokemonSearch.js"></script>
     </body>
 </html>
